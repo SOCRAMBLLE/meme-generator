@@ -1,11 +1,22 @@
+import { useState } from "react";
 import memesData from "../assets/memesData";
 
 export default function Meme() {
+  const [randomMeme, setRandomMeme] = useState({
+    topText: "",
+    bottomText: "",
+    randomImage: "",
+  });
+  const [allMemes, setAllMemes] = useState(memesData);
+
   function handleClick() {
-    const memesArray = memesData.data.memes;
+    const memesArray = allMemes.data.memes;
     const randomNumber = Math.floor(Math.random() * memesArray.length);
-    let randomMeme = memesArray[randomNumber];
-    console.log(randomMeme);
+    const rMemeImg = memesArray[randomNumber].url;
+    setRandomMeme((prev) => ({
+      ...prev,
+      randomImage: rMemeImg,
+    }));
   }
 
   return (
@@ -28,9 +39,14 @@ export default function Meme() {
           </label>
         </div>
         <button className="form--button" onClick={handleClick}>
-          Get a new meme image 🖼
+          Get a new meme image !
         </button>
       </div>
+      {randomMeme.randomImage ? (
+        <img src={randomMeme.randomImage} className="meme--img" />
+      ) : (
+        <h5 className="meme--default">Click the button to get a meme</h5>
+      )}
     </main>
   );
 }
