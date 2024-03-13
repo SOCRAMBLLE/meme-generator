@@ -1,7 +1,17 @@
+import memesData from "../assets/memesData";
+
 export default function Meme() {
+  function handleClick(e) {
+    const memesArray = memesData.data.memes;
+    const randomNumber = Math.floor(Math.random() * memesArray.length);
+    let randomMeme = memesArray[randomNumber];
+    e.preventDefault();
+    console.log(randomMeme);
+  }
+
   return (
     <main>
-      <form className="form">
+      <div className="form">
         <div>
           <label className="form--label">
             Top Text
@@ -18,8 +28,10 @@ export default function Meme() {
             />
           </label>
         </div>
-        <button className="form--button">Get a new meme image 🖼</button>
-      </form>
+        <button className="form--button" onClick={handleClick}>
+          Get a new meme image 🖼
+        </button>
+      </div>
     </main>
   );
 }
