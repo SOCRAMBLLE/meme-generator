@@ -1,11 +1,10 @@
 import memesData from "../assets/memesData";
 
 export default function Meme() {
-  function handleClick(e) {
+  function handleClick() {
     const memesArray = memesData.data.memes;
     const randomNumber = Math.floor(Math.random() * memesArray.length);
     let randomMeme = memesArray[randomNumber];
-    e.preventDefault();
     console.log(randomMeme);
   }
 
